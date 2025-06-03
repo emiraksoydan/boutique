@@ -1,0 +1,43 @@
+a.dropdown-toggle {
+    outline: none !important;
+    border: none !important;
+}
+
+a {
+    outline: none !important;
+    border: none !important;
+}
+
+.dropdown-menu {
+    outline: none !important;
+    border: none !important;
+    background-color: gainsboro !important;
+}
+
+a.dropdown-item:active {
+    background-color: transparent !important;
+    color: #000;
+    box-shadow: none;
+    outline: none;
+}
+
+.auth-class {
+    font-size: small !important;
+}
+
+.hover-rate:hover {
+    background-color: #f8f9fa !important;
+}
+
+
+.ms-6 {
+    margin-left: 6.5rem !important;
+}
+
+.ms-7 {
+    margin-left: 9.5rem !important;
+}
+
+.me-6 {
+    margin-right: 15rem !important;
+}
