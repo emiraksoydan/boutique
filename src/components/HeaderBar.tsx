@@ -1,13 +1,14 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import React, { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { BiCategory } from "react-icons/bi";
 import logo from "../assets/images/logo3.png";
-import { Dropdown, type DropdownChangeEvent } from 'primereact/dropdown';
 import { Badge } from 'primereact/badge';
 import { IoBagHandleOutline } from "react-icons/io5";
 import { MdFavoriteBorder } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
-import { Autocomplete, Divider, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
+import { Divider, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
+import { FaAngleRight } from "react-icons/fa6";
+
 type Category = { name: string };
 
 const HeaderBar = () => {
@@ -22,6 +23,64 @@ const HeaderBar = () => {
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(categories[0]);
     const [searchTerm, setSearchTerm] = useState('');
 
+    const items = [
+        {
+            label: 'Kadın Giyim',
+            items: [
+                [
+                    {
+                        label: 'Living Room',
+                        items: [{ label: 'Accessories' }, { label: 'Armchair' }, { label: 'Coffee Table' }, { label: 'Couch' }, { label: 'TV Stand' }]
+
+                    }
+                ],
+                [
+                    {
+                        label: 'Kitchen',
+                        items: [{ label: 'Bar stool' }, { label: 'Chair' }, { label: 'Table' }]
+                    },
+                ],
+            ]
+        },
+        {
+            label: 'Erkek Giyim',
+            items: [
+                [
+                    {
+                        label: 'asda Room',
+                        items: [{ label: 'Accessorasdsaies' }, { label: 'Armchair' }, { label: 'Coffee Table' }, { label: 'Couch' }, { label: 'TV Stand' }]
+
+                    }
+                ],
+                [
+                    {
+                        label: 'Kiasdatchen',
+                        items: [{ label: 'Baasdr stasdsaool' }, { label: 'Chair' }, { label: 'Table' }]
+                    },
+                ],
+            ]
+        },
+        {
+            label: 'Takı',
+        },
+        {
+            label: 'Ayakkabı',
+        }
+    ];
+    const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+    const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const [submenuTop, setSubmenuTop] = useState(0);
+
+    useEffect(() => {
+        const hoveredEl = itemRefs.current[hoveredIndex ?? -1];
+        const containerEl = itemRefs.current[0]?.parentElement;
+        if (hoveredEl && containerEl) {
+            const rect = hoveredEl.getBoundingClientRect();
+            const containerRect = containerEl.getBoundingClientRect();
+            console.log(hoveredEl, containerEl);
+            setSubmenuTop(rect.top - containerRect.top);
+        }
+    }, [hoveredIndex]);
     return (
         <div className='row m-0 p-0 d-flex flex-row align-items-center  p-2 border-bottom'>
             <div className='col-md-4 d-flex flex-column align-items-center'>
@@ -31,7 +90,7 @@ const HeaderBar = () => {
                     <div
                         className="dropdown position-relative d-inline-block"
                         onMouseEnter={() => setIsOpen(true)}
-                        onMouseLeave={() => setIsOpen(false)}
+                        onMouseLeave={() => { setIsOpen(false); setHoveredIndex(null); }}
                     >
                         <a
                             className="btn btn-sm"
@@ -46,19 +105,68 @@ const HeaderBar = () => {
                             Kategoriler
                         </a>
                         <AnimatePresence>
-                            {isOpen && (
-                                <motion.div
-                                    className="dropdown-menu show position-absolute d-block z-3 top-100"
-                                    aria-labelledby="dropdownMenuLink"
-                                    initial={{ opacity: 0, y: -10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    exit={{ opacity: 0, y: -10 }}
-                                    transition={{ duration: 0.2 }}
-                                    style={{ left: -10, }}
-                                >
-                                    <a href='#' className="dropdown-item" onClick={(e) => { e.preventDefault(); setIsOpen(false); }}>Türkçe</a>
-                                </motion.div>
-                            )}
+                            {isOpen &&
+                                (
+                                    <motion.div
+                                        className="dropdown-menu cat-menu show position-absolute d-block z-3 top-100"
+                                        aria-labelledby="dropdownMenuLink"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 9 }}
+                                        exit={{ opacity: 0, y: -10 }}
+                                        transition={{ duration: 0.2 }}
+                                        style={{ left: -25, }}
+                                    >
+                                        <div className="position-relative">
+                                            <div className="d-flex flex-column">
+                                                {items.map((item, index) => (
+                                                    <div
+                                                        key={index}
+                                                        ref={(el) => { itemRefs.current[index] = el; }}
+                                                        className="dropdown-item  d-flex justify-content-between align-items-center"
+                                                        onMouseEnter={() => setHoveredIndex(index)}
+                                                        style={{ cursor: "pointer", minWidth: "200px" }}
+                                                    >
+                                                        {item.label}
+                                                        {item.items && <FaAngleRight size={14} />}
+                                                    </div>
+                                                ))}
+                                            </div>
+                                            <AnimatePresence>
+                                                {hoveredIndex !== null &&
+                                                    items[hoveredIndex]?.items && (
+                                                        <motion.div
+                                                            initial={{ opacity: 0, x: 10 }}
+                                                            animate={{ opacity: 1, x: 1 }}
+                                                            exit={{ opacity: 0, x: 10 }}
+                                                            transition={{ duration: 0.2 }}
+                                                            className="position-absolute bg-white shadow  z-3 p-3 d-flex"
+                                                            style={{
+                                                                top: submenuTop,
+                                                                left: "100%",
+                                                                minWidth: "300px",
+                                                                whiteSpace: "nowrap"
+                                                            }}
+                                                        >
+                                                            {items[hoveredIndex].items.map((column, colIndex) => (
+                                                                <div key={colIndex} className="me-4">
+                                                                    {column.map((category, i) => (
+                                                                        <div key={i} className="mb-2">
+                                                                            <div className="fw-bold mb-2 ">{category.label}</div>
+                                                                            {category.items.map((sub, subIndex) => (
+                                                                                <div key={subIndex} className="text-muted small mb-2">
+                                                                                    {sub.label}
+                                                                                </div>
+                                                                            ))}
+                                                                        </div>
+                                                                    ))}
+                                                                </div>
+                                                            ))}
+                                                        </motion.div>
+                                                    )}
+                                            </AnimatePresence>
+                                        </div>
+                                    </motion.div>
+                                )}
                         </AnimatePresence>
                     </div>
                 </div>
@@ -132,8 +240,10 @@ const HeaderBar = () => {
                 <Divider className='w-100' sx={{
                     borderBottom: '3px solid #424648',
                     opacity: 1,
-
                 }} />
+                <div>
+                    asdasd
+                </div>
             </div>
             <div className="col-md-3 d-flex justify-content-center  gap-4  ">
                 <span className="p-overlay-badge mt-2" style={{ fontSize: '2.0rem' }}>
