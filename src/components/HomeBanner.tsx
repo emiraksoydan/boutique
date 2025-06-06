@@ -7,7 +7,6 @@ import carousel3 from "../assets/images/carousel-3.png";
 
 const HomeBanner = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-
     const items = [
         {
             itemImageSrc: carousel1,
@@ -65,7 +64,7 @@ const HomeBanner = () => {
 
     return (
         <Galleria
-            className="mt-5"
+            className="mt-5 w-100 m-0 p-0"
             value={items}
             activeIndex={activeIndex}
             onItemChange={(e) => setActiveIndex(e.index)}

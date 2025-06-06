@@ -109,3 +109,115 @@ a.dropdown-item:active {
     border-top: none !important;
 
 }
+
+.w-10 {
+    width: 20% !important;
+}
+
+.p-unselectable-text a {
+    background-color: #eeeeee !important;
+    color: #000 !important;
+    text-decoration: none !important;
+    padding-top: 15px !important;
+    padding-bottom: 15px !important;
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    border-radius: 5px !important;
+}
+
+.p-unselectable-text a:hover {
+    background-color: #f5e4bf !important;
+    color: #4b847b !important;
+
+}
+
+.p-tabview-selected a {
+    background-color:
+        #f5e4bf !important;
+    color: #4b847b !important;
+}
+
+
+.p-tabview-nav {
+    gap: 10px !important;
+    margin-top: 40px !important;
+    padding-left: 10px !important;
+    margin-bottom: 0% !important;
+    border: none !important;
+}
+
+.p-tabview-nav li {
+    margin-bottom: 2px !important;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.p-tabview-nav li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.p-tabview-panels {
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+}
+
+
+
+.tooltip-success {
+    --bs-tooltip-bg: #407e78 !important;
+}
+
+.basket-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    background-color: #407e78 !important;
+}
+
+.basket-btn {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    margin-bottom: 2px !important;
+}
+
+.basket-btn:hover .hover-icon-color {
+    color: white !important;
+}
+
+.custom-tooltip {
+    transform: translateX(-50%) translateY(0px);
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.custom-tooltip.show {
+    transform: translateX(-50%) translateY(-8px);
+}
+
+.tooltip-box {
+    background: #407e78;
+    font-size: 0.8rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.tooltip-arrow {
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid #407e78;
+}
+
+.image-actions {
+
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.image-container:hover .image-actions {
+    opacity: 1;
+}
+
+.hover-main-container {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-main-container.hovered {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}

@@ -8,6 +8,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { CiSearch } from "react-icons/ci";
 import { Divider, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
 import { FaAngleRight } from "react-icons/fa6";
+import { FaCaretDown } from "react-icons/fa";
 
 type Category = { name: string };
 
@@ -241,8 +242,16 @@ const HeaderBar = () => {
                     borderBottom: '3px solid #424648',
                     opacity: 1,
                 }} />
-                <div>
-                    asdasd
+                <div className='mt-3 d-flex gap-5'>
+                    <span className='text-muted fw-bold'>Anasayfa</span>
+                    <span className='text-muted fw-bold'>Ürünler</span>
+                    <span className='text-muted fw-bold'>Ürün Detayları</span>
+                    <span className='text-muted fw-bold'>Günün Fırsatı</span>
+                    <div className='d-flex  align-items-center'>
+                        <span className='text-muted fw-bold me-1'>Sayfalar</span>
+                        <FaCaretDown />
+                    </div>
+                    <span className='text-muted fw-bold'>iletişim</span>
                 </div>
             </div>
             <div className="col-md-3 d-flex justify-content-center  gap-4  ">

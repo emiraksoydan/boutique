@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import TopBar from './components/TopBar'
 import HeaderBar from './components/HeaderBar'
-import HomeBanner from './components/HomeBanner'
+import Home from './pages/Home'
 
 
 
@@ -11,7 +11,7 @@ function App() {
         <>
             <TopBar></TopBar>
             <HeaderBar></HeaderBar>
-            <HomeBanner></HomeBanner>
+            <Home></Home>
         </>
     )
 }
