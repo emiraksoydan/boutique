@@ -16,9 +16,9 @@ const TopBar = () => {
   return (
     <div className='row p-0 m-0 w-100  ' style={{ backgroundColor: '#e0f4e4' }}>
       <div className='col-md-6 d-flex flex-row mt-2 justify-content-center   p-2 gap-4'>
-        <h6>About</h6>
-        <h6>Contact</h6>
-        <h6>Help</h6>
+        <h6>Hakkımızda</h6>
+        <h6>İletişim</h6>
+        <h6>Yardım</h6>
         <h6>FAQ</h6>
       </div>
       <div className='col-md-6 d-flex flex-row justify-content-center  align-items-center p-2 gap-4'>

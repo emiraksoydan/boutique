@@ -242,16 +242,15 @@ const HeaderBar = () => {
                     borderBottom: '3px solid #424648',
                     opacity: 1,
                 }} />
-                <div className='mt-3 d-flex gap-5'>
-                    <span className='text-muted fw-bold'>Anasayfa</span>
-                    <span className='text-muted fw-bold'>Ürünler</span>
-                    <span className='text-muted fw-bold'>Ürün Detayları</span>
-                    <span className='text-muted fw-bold'>Günün Fırsatı</span>
-                    <div className='d-flex  align-items-center'>
-                        <span className='text-muted fw-bold me-1'>Sayfalar</span>
-                        <FaCaretDown />
+                <div className="row mt-3 gap-3">
+                    <div className="col-auto text-muted fw-bold">Anasayfa</div>
+                    <div className="col-auto text-muted fw-bold">Ürünler</div>
+                    <div className="col-auto text-muted fw-bold">Ürün Detayları</div>
+                    <div className="col-auto text-muted fw-bold">Günün Fırsatı</div>
+                    <div className="col-auto d-flex align-items-center text-muted fw-bold">
+                        Sayfalar <FaCaretDown className="ms-1" />
                     </div>
-                    <span className='text-muted fw-bold'>iletişim</span>
+                    <div className="col-auto text-muted fw-bold">İletişim</div>
                 </div>
             </div>
             <div className="col-md-3 d-flex justify-content-center  gap-4  ">

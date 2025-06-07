@@ -221,3 +221,48 @@ a.dropdown-item:active {
 .hover-main-container.hovered {
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
 }
+
+
+.custom-carousel {
+    position: relative;
+}
+
+.custom-carousel .p-carousel-prev,
+.custom-carousel .p-carousel-next {
+    position: absolute;
+    top: -40px;
+    width: 35px;
+    height: 35px;
+    background-color: #eaf6ea !important;
+    color: black;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+    z-index: 10;
+}
+
+.custom-carousel .p-carousel-prev:hover,
+.custom-carousel .p-carousel-next:hover {
+    background-color: #407e78 !important;
+    color: white !important;
+}
+
+.custom-carousel .p-carousel-prev {
+    right: 60px;
+}
+
+.custom-carousel .p-carousel-next {
+    right: 15px;
+}
+
+.footer-animation-text:hover {
+    transform: translateX(4px);
+    color: #407e78 !important;
+}
+
+.footer-animation-text {
+    transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+    cursor: pointer;
+}

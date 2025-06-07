@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { PrimeReactProvider, PrimeReactContext } from 'primereact/api';
-import 'primereact/resources/themes/lara-light-blue/theme.css'; // Tema
+import 'primereact/resources/themes/lara-light-blue/theme.css';
 import 'primereact/resources/primereact.min.css';
 import './assets/css/style.css';
 import App from './App.tsx'
