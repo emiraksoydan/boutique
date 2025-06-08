@@ -1,20 +1,20 @@
-import { useState } from 'react'
-import TopBar from './components/TopBar'
-import HeaderBar from './components/HeaderBar'
+
 import Home from './pages/Home'
-import FooterBar from './components/FooterBar'
+import { Route, Routes } from 'react-router'
+import Product from './pages/Product'
+import MainLayout from './pages/MainLayout'
 
 
 
 function App() {
 
     return (
-        <>
-            <TopBar></TopBar>
-            <HeaderBar></HeaderBar>
-            <Home></Home>
-            <FooterBar></FooterBar>
-        </>
+        <Routes>
+            <Route path="/" element={<MainLayout />}>
+                <Route index element={<Home />} />
+                <Route path="product" element={<Product />} />
+            </Route>
+        </Routes>
     )
 }
 

@@ -5,7 +5,7 @@ import { FaLinkedinIn, FaFacebookF, FaInstagram, FaTwitter } from "react-icons/f
 
 const FooterBar = () => {
     return (
-        <div className='container-fluid pt-5 pb-5'>
+        <div className='container-fluid pt-5 pb-5' style={{ backgroundColor: "#f7f8f9" }}>
             <div className='container '>
                 <div className='row '>
                     <div className='col-md-4 col-sm-12 d-flex ps-md-0  ps-2 flex-column gap-1' >
@@ -59,8 +59,8 @@ const FooterBar = () => {
                         </div>
                     </div>
                 </div>
-                <Divider className=' mt-5' sx={{
-                    borderBottom: '1px solid #f6f8f5',
+                <Divider className=' mt-4' sx={{
+                    borderBottom: '1px solidrgb(255, 255, 255)',
                     opacity: 1,
                 }} />
 

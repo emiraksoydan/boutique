@@ -34,11 +34,11 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ id, title, productNa
             >
                 <div
                     style={{ height: 250 }}
-                    className='image-container w-100 d-flex position-relative justify-content-center align-items-center rounded-5 overflow-hidden'
+                    className=' w-100 d-flex position-relative justify-content-center align-items-center rounded-5 overflow-hidden'
                     onMouseEnter={() => setHoveredIndex(id)}
                     onMouseLeave={() => setHoveredIndex(null)}
                 >
-                    <img src={image} alt={title} className=" object-fit-contain img-fluid" />
+                    <img src={image} alt={title} loading='lazy' className=" img-fluid img" />
                     <div className="image-actions position-absolute start-50 top-50 d-flex gap-1 z-2">
                         <MotionTooltip content="Hızlı Görüntüle">
                             <button

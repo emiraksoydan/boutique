@@ -266,3 +266,58 @@ a.dropdown-item:active {
     transition: transform 0.2s ease, box-shadow 0.2s ease !important;
     cursor: pointer;
 }
+
+.p-breadcrumb-list {
+    margin-bottom: 0% !important;
+}
+
+.p-menuitem-separator {
+    font-size: 0.9rem !important;
+}
+
+.p-menuitem-link {
+    text-decoration: none !important;
+}
+
+.p-menuitem-text {
+    font-size: 0.9rem !important;
+}
+
+.p-slider-range {
+    background-color: #222222 !important;
+}
+
+.p-slider-handle {
+    background-color: #407e78 !important;
+    border-color: #407e78 !important;
+    width: 15px !important;
+    height: 15px !important;
+    top: 4px !important;
+}
+
+.filter-button {
+    background-color: #407e78 !important;
+    color: white !important;
+}
+
+.filter-button:hover {
+    background-color: #365e5a !important;
+}
+
+.p-checkbox.p-highlight .p-checkbox-box {
+    background-color: #365e5a !important;
+    border-color: #365e5a !important;
+}
+
+
+.p-checkbox:hover .p-checkbox-box {
+    border: 2px solid #365e5a !important;
+}
+
+.w-95 {
+    width: 95% !important;
+}
+
+.img {
+    object-fit: contain !important;
+}

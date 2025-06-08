@@ -9,6 +9,7 @@ import { CiSearch } from "react-icons/ci";
 import { Divider, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
 import { FaAngleRight } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
+import { Link } from 'react-router';
 
 type Category = { name: string };
 
@@ -243,9 +244,9 @@ const HeaderBar = () => {
                     opacity: 1,
                 }} />
                 <div className="row mt-3 gap-3">
-                    <div className="col-auto text-muted fw-bold">Anasayfa</div>
-                    <div className="col-auto text-muted fw-bold">Ürünler</div>
-                    <div className="col-auto text-muted fw-bold">Ürün Detayları</div>
+                    <Link to={"/"} className="col-auto text-muted fw-bold text-decoration-none">Anasayfa</Link>
+                    <Link to={"/product"} className="col-auto text-muted fw-bold text-decoration-none ">Ürünler</Link>
+                    <Link to={"/denemeflex"} className="col-auto text-muted fw-bold">Ürün Detayları</Link>
                     <div className="col-auto text-muted fw-bold">Günün Fırsatı</div>
                     <div className="col-auto d-flex align-items-center text-muted fw-bold">
                         Sayfalar <FaCaretDown className="ms-1" />
