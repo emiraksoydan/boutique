@@ -246,12 +246,12 @@ const HeaderBar = () => {
                 <div className="row mt-3 gap-3">
                     <Link to={"/"} className="col-auto text-muted fw-bold text-decoration-none">Anasayfa</Link>
                     <Link to={"/product"} className="col-auto text-muted fw-bold text-decoration-none ">Ürünler</Link>
-                    <Link to={"/denemeflex"} className="col-auto text-muted fw-bold">Ürün Detayları</Link>
-                    <div className="col-auto text-muted fw-bold">Günün Fırsatı</div>
+                    <Link to={"/product-detail"} className="col-auto text-muted fw-bold text-decoration-none">Ürün Detayları</Link>
+                    <Link to={"/deal-of-day"} className="col-auto text-muted fw-bold text-decoration-none">Günün Fırsatı</Link>
                     <div className="col-auto d-flex align-items-center text-muted fw-bold">
                         Sayfalar <FaCaretDown className="ms-1" />
                     </div>
-                    <div className="col-auto text-muted fw-bold">İletişim</div>
+                    <Link to={"/contact"} className="col-auto text-muted fw-bold text-decoration-none">İletişim</Link>
                 </div>
             </div>
             <div className="col-md-3 d-flex justify-content-center  gap-4  ">

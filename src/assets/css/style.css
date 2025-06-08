@@ -3,6 +3,10 @@ a.dropdown-toggle {
     border: none !important;
 }
 
+a.dropdown-toggle::after {
+    margin-left: 10px !important;
+}
+
 a {
     outline: none !important;
     border: none !important;
@@ -10,8 +14,8 @@ a {
 
 .dropdown-menu {
     outline: none !important;
-    border: none !important;
-    background-color: gainsboro !important;
+    border: 1px solid gainsboro !important;
+    background-color: #fff !important;
 }
 
 a.dropdown-item:active {
@@ -28,7 +32,6 @@ a.dropdown-item:active {
 .hover-rate:hover {
     background-color: #f8f9fa !important;
 }
-
 
 .ms-6 {
     margin-left: 6.5rem !important;
@@ -314,10 +317,34 @@ a.dropdown-item:active {
     border: 2px solid #365e5a !important;
 }
 
-.w-95 {
-    width: 95% !important;
+.Mui-selected {
+    background-color: #407e78 !important;
+    color: white !important;
 }
 
-.img {
-    object-fit: contain !important;
+.MuiPaginationItem-root:hover {
+    background-Color: '#eaf6ea' !important;
+}
+
+.show-values-dropdown {
+    background-color: #f7f8f9 !important;
+    border: 1px solid #e3e9e1 !important;
+}
+
+.custom-btn-group .custom-btn {
+    background-color: #f7f8f9;
+    border: 1px solid #ced4da;
+    color: #333;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+}
+
+.custom-btn-group .custom-btn:hover {
+    background-color: #e2e6ea;
+    color: #000;
+}
+
+.custom-btn-group .custom-btn.active {
+    background-color: #407e78;
+    color: #fff;
+    border-color: #407e78;
 }
