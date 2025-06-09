@@ -1,8 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import BreadCrumbComponent from '../components/BreadCrumb';
-import { Divider, Pagination } from '@mui/material';
-import { Slider, type SliderChangeEvent } from 'primereact/slider';
-import { Checkbox, type CheckboxChangeEvent } from 'primereact/checkbox';
+import { Checkbox, Divider, FormControlLabel, FormGroup, Pagination, Slider } from '@mui/material';
 import shoes from '../assets/images/shoes.jpg';
 import ProductCardComponent from '../components/ProductCardComponent';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -10,10 +8,7 @@ import { BiCategory } from "react-icons/bi";
 import { TbSortAscending2 } from "react-icons/tb";
 import { BsList } from "react-icons/bs";
 
-interface Category {
-    name: string;
-    key: string;
-}
+
 
 const Product = () => {
     const breadcrumbItems = [{ label: 'Ürünler' }];
@@ -29,24 +24,18 @@ const Product = () => {
     })), []);
 
     const paginatedItems = dummyItems.slice((page - 1) * pageSize, ((page - 1) * pageSize) + pageSize);
-    const [value, setValue] = useState<[number, number]>([0, 100]);
-    const categoriesColor: Category[] = [
-        { name: 'Red(56)', key: 'A' },
-        { name: 'Green(78)', key: 'M' },
-        { name: 'Blue(100)', key: 'P' },
-    ];
-    const [selectedColorCategories, setSelectedColorCategories] = useState<Category[]>([]);
-    const onCategoryChange = (e: CheckboxChangeEvent) => {
-        let _selectedCategories = [...selectedColorCategories];
-        if (e.checked)
-            _selectedCategories.push(e.value);
-        else
-            _selectedCategories = _selectedCategories.filter(category => category.key !== e.value.key);
-        setSelectedColorCategories(_selectedCategories);
+    const [value1, setValue1] = React.useState<number[]>([0, 100]);
+
+    const handleChange1 = (event: Event, newValue: number[], activeThumb: number) => {
+        if (activeThumb === 0) {
+            setValue1([Math.min(newValue[0], value1[1] - 10), value1[1]]);
+        } else {
+            setValue1([value1[0], Math.max(newValue[1], value1[0] + 10)]);
+        }
     };
+
     const [isOpenShow, setIsOpenShow] = useState(false);
     const [isOpenSort, setIsOpenSort] = useState(false);
-
     const [selectedShow, setSelectedShow] = useState("Hepsi");
     const [selectedSort, setSelectedSort] = useState("Öne çıkanlar");
 
@@ -60,24 +49,22 @@ const Product = () => {
                             <h5>Filtreleme</h5>
                             <Divider className='w-100 mt-3' sx={{ borderBottom: '1px solidrgb(117, 118, 119)', opacity: 1 }} />
                             <Slider
-                                value={value}
-                                onChange={(e: SliderChangeEvent) => {
-                                    if (Array.isArray(e.value) && e.value.length === 2) { setValue(e.value as [number, number]); }
-                                }}
-                                className='mt-4 mb-3'
-                                style={{ backgroundColor: '#407e78 ' }}
-                                range
+                                getAriaLabel={() => 'Minimum distance'}
+                                className='mt-3 py-2'
+                                value={value1}
+                                onChange={handleChange1}
+                                disableSwap
+                                sx={{ color: '#222222', }}
                             />
                             <span className='d-block'>Aralık:</span>
-                            <span className='fw-bold'>0 TL - 100 TL</span>
+                            <span className='fw-bold'>  {value1[0]} TL - {value1[1]} TL</span>
                             <div className='d-flex flex-column gap-2 pt-3'>
                                 <span className='fw-bold'>Renk</span>
-                                {categoriesColor.map((category) => (
-                                    <div key={category.key}>
-                                        <Checkbox inputId={category.key} name="category" value={category} onChange={onCategoryChange} checked={selectedColorCategories.some((item) => item.key === category.key)} />
-                                        <label htmlFor={category.key} className="ms-2">{category.name}</label>
-                                    </div>
-                                ))}
+                                <FormGroup>
+                                    <FormControlLabel control={<Checkbox disableRipple className='pe-1' style={{ color: "#407e78" }} />} label="Kırmızı(50)" />
+                                    <FormControlLabel control={<Checkbox disableRipple className='pe-1' style={{ color: "#407e78" }} />} label="Mavi(20)" />
+                                    <FormControlLabel control={<Checkbox disableRipple className='pe-1' style={{ color: "#407e78" }} />} label="Sarı(10)" />
+                                </FormGroup>
                             </div>
                             <div className='btn mt-4 w-100 filter-button'>Filtrele</div>
                         </div>
@@ -208,6 +195,8 @@ const Product = () => {
                                             productName={item.productName}
                                             image={item.image}
                                             wrapperClassName="w-100"
+                                            isList={false}
+
                                         />
                                     </div>
                                 ))}
@@ -216,9 +205,15 @@ const Product = () => {
                         {layout === 'list' && (
                             <>
                                 {paginatedItems.map((item) => (
-                                    <div key={item.id} className="card p-3 mb-2 mt-2">
-                                        <h5>{item.title}</h5>
-                                        <p>{item.productName}</p>
+                                    <div key={item.id} className="p-0 mb-2 mt-2">
+                                        <ProductCardComponent
+                                            id={item.id}
+                                            title={item.title}
+                                            productName={item.productName}
+                                            image={item.image}
+                                            wrapperClassName="w-100"
+                                            isList={true}
+                                        />
                                     </div>
                                 ))}
                             </>

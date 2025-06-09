@@ -348,3 +348,33 @@ a.dropdown-item:active {
     color: #fff;
     border-color: #407e78;
 }
+
+.MuiSlider-thumb.Mui-active {
+    box-shadow: none !important;
+}
+
+/* Klavye ile odaklanınca shadow olmasın */
+.MuiSlider-thumb.Mui-focusVisible {
+    box-shadow: none !important;
+}
+
+
+.MuiSlider-thumb {
+    background-color: #407e78 !important;
+    height: 15px !important;
+    width: 15px !important;
+    box-shadow: 'none';
+}
+
+.MuiSlider-thumb:hover {
+    box-shadow: none !important;
+}
+
+.MuiSlider-rail {
+    color: #407e78 !important;
+    opacity: 1 !important;
+}
+
+.MuiSlider-track {
+    border: 'none' !important;
+}
