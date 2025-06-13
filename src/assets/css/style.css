@@ -378,3 +378,12 @@ a.dropdown-item:active {
 .MuiSlider-track {
     border: 'none' !important;
 }
+
+.galleria-item-height {
+    height: calc(100vh - 80px);
+}
+
+.hover-color:hover {
+    background-color: #407e78 !important;
+    transition: 'background-color 0.3s ease',
+}
