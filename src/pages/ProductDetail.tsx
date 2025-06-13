@@ -6,10 +6,16 @@ import p1 from '../assets/images/p1.jpg';
 import p2 from '../assets/images/p2.jpg';
 import p3 from '../assets/images/p3.jpg';
 import RatingComponent from '../components/Rating';
-import { Divider, FormControl, RadioGroup, TextField } from '@mui/material';
+import { Divider, FormControl, RadioGroup, Tab, Tabs, TextField } from '@mui/material';
 import RadioColor from '../components/RadioColor';
 import { CiHeart } from 'react-icons/ci';
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa6';
+import CustomTabPanel from '../components/CustomTabPanel';
+import ProgressLine from '../components/ProgressLine';
+import { FixedSizeList as List } from 'react-window';
+import type { Comment } from '../components/CommentCard';
+import CommentCard from '../components/CommentCard';
+import AddComment from '../components/AddComment';
 
 type ImageItem = {
     itemImageSrc: string;
@@ -17,10 +23,58 @@ type ImageItem = {
     alt?: string;
     title?: string;
 };
+function a11yProps(index: number) {
+    return {
+        id: `simple-tab-${index}`,
+        'aria-controls': `simple-tabpanel-${index}`,
+    };
+}
 
 const ProductDetail = () => {
     const [images, setImages] = useState<ImageItem[]>([]);
     const [value, setValue] = useState(0);
+    const [tabValue, setTabValue] = React.useState(0);
+    const ratingData = [
+        { label: '5 yıldız', value: 75 },
+        { label: '4 yıldız', value: 25 },
+        { label: '3 yıldız', value: 50 },
+        { label: '2 yıldız', value: 30 },
+        { label: '1 yıldız', value: 85 },
+    ];
+    const comments: Comment[] = [
+        {
+            avatarUrl: p1,
+            fullName: 'Ahmet Yılmaz',
+            rating: 4.5,
+            message: 'Ürün gerçekten kaliteli, hızlı teslimat için teşekkürler!',
+            date: '13 Haziran 2025 14:32',
+        },
+        {
+            avatarUrl: p1,
+            fullName: 'Elif Demir',
+            rating: 5,
+            message: 'Çok memnun kaldım, tekrar sipariş vereceğim.',
+            date: '12 Haziran 2025 09:15',
+        },
+        {
+            avatarUrl: p2,
+            fullName: 'Elif Demir',
+            rating: 5,
+            message: 'Çok memnun kaldım, tekrar sipariş vereceğim.',
+            date: '12 Haziran 2025 09:15',
+        },
+        // {
+        //     avatarUrl: p3,
+        //     fullName: 'Elif Demir',
+        //     rating: 5,
+        //     message: 'Çok memnun kaldım, tekrar sipariş vereceğim.',
+        //     date: '12 Haziran 2025 09:15',
+        // },
+    ];
+    const handleTabChange = (event: React.SyntheticEvent, newValue: number) => {
+        setTabValue(newValue);
+    };
+
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const val = Number(e.target.value);
@@ -228,7 +282,97 @@ const ProductDetail = () => {
                             <FaTwitter color='#6f6e70' />
                         </div>
                     </div>
-                    <div className='col-md-12 '>Ürün Detayları</div>
+                    <div className='col-md-12 mb-5 mt-0'>
+                        <Tabs slotProps={{
+                            indicator: {
+                                style: {
+                                    backgroundColor: '#407e78',
+                                    height: '2px',
+                                },
+                            }
+                        }} value={tabValue} onChange={handleTabChange} aria-label="basic tabs example">
+                            <Tab sx={{
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                '&.Mui-selected': {
+                                    color: '#407e78  !important',
+                                    transform: 'none',
+                                    boxShadow: 'none',
+                                },
+                                '&:hover:not(.Mui-selected)': {
+                                    transform: 'translateY(-3px)',
+                                    color: '#407e78  !important'
+                                },
+                            }} className='px-4 py-0 bg-white text-black' label="Açıklama" {...a11yProps(0)} />
+                            <Tab sx={{
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                '&.Mui-selected': {
+                                    color: '#407e78  !important',
+                                    transform: 'none',
+                                    boxShadow: 'none',
+                                },
+                                '&:hover:not(.Mui-selected)': {
+                                    transform: 'translateY(-3px)',
+                                    color: '#407e78  !important'
+                                },
+                            }} className='px-4 py-0 bg-white text-black ' label="Bilgi" {...a11yProps(1)} />
+                            <Tab sx={{
+                                transition: 'transform 0.3s ease, box-shadow 0.3s ease',
+                                '&.Mui-selected': {
+                                    color: '#407e78 !important',
+                                    transform: 'none',
+                                    boxShadow: 'none',
+                                },
+                                '&:hover:not(.Mui-selected)': {
+                                    transform: 'translateY(-3px)',
+                                    color: '#407e78  !important'
+                                },
+                            }} className='px-4 py-0 bg-white text-black ' label="Yorumlar" {...a11yProps(2)} />
+                        </Tabs>
+                        <CustomTabPanel value={tabValue} index={0}>
+                            <div className='py-4'>
+                                Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear furiously this apart.
+
+                                Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.
+                            </div>
+                        </CustomTabPanel>
+                        <CustomTabPanel value={tabValue} index={1}>
+                            <div className='py-4'>
+                                Uninhibited carnally hired played in whimpered dear gorilla koala depending and much yikes off far quetzal goodness and from for grimaced goodness unaccountably and meadowlark near unblushingly crucial scallop tightly neurotic hungrily some and dear furiously this apart.
+
+                                Spluttered narrowly yikes left moth in yikes bowed this that grizzly much hello on spoon-fed that alas rethought much decently richly and wow against the frequent fluidly at formidable acceptably flapped besides and much circa far over the bucolically hey precarious goldfinch mastodon goodness gnashed a jellyfish and one however because.
+                            </div>
+                        </CustomTabPanel>
+                        <CustomTabPanel value={tabValue} index={2}>
+                            <div className='py-5 px-2 gap-5 row'>
+                                <div className='col-md-7 col-sm-12'>
+                                    <h4>Müşteri Soru-Cevap</h4>
+                                    <List
+                                        height={430}
+                                        itemCount={comments.length}
+                                        itemSize={130}
+                                        width="100%"
+                                    >
+                                        {({ index }) => (
+                                            <CommentCard comment={comments[index]} />
+                                        )}
+                                    </List>
+                                    <AddComment />
+                                </div>
+                                <div className='col-md-4 ps-sm-3 ps-md-0 col-sm-12'>
+                                    <h4>Müşteri Puanlama</h4>
+                                    <div className='mt-4 d-flex gap-3'>
+                                        <RatingComponent isRead={true} ></RatingComponent>
+                                        <h6>4.8 out of 5</h6>
+                                    </div>
+                                    <div className='mt-4 d-flex gap-3 col-12 flex-column'>
+                                        {ratingData.map((item, index) => (
+                                            <ProgressLine key={index} label={item.label} value={item.value} />
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        </CustomTabPanel>
+                    </div>
                 </div>
             </div>
         </>

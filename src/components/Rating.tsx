@@ -3,14 +3,27 @@ import React from 'react'
 import StarBorderIcon from '@mui/icons-material/StarBorder';
 import StarIcon from '@mui/icons-material/Star';
 
-const RatingComponent = () => {
+interface RatingComponentProps {
+    isRead?: boolean;
+    fontSize?: string;
+    defaultValue?: number
+    value?: number
+    onChange?: (value: number) => void;
+}
+
+const RatingComponent: React.FC<RatingComponentProps> = ({ isRead = false, fontSize = '1.2rem', defaultValue = 4.5, value, onChange, }) => {
     return (
         <Rating
-            icon={<StarIcon sx={{ stroke: 'gold', strokeWidth: 1, fontSize: '1.2rem' }} />}
-            emptyIcon={<StarBorderIcon sx={{ stroke: 'gold', strokeWidth: 1, fontSize: '1.2rem' }} />}
+            readOnly={isRead}
+            icon={<StarIcon sx={{ stroke: 'gold', strokeWidth: 1, fontSize: fontSize }} />}
+            emptyIcon={<StarBorderIcon sx={{ stroke: 'gold', strokeWidth: 1, fontSize: fontSize }} />}
             size='small'
             name="half-rating"
-            defaultValue={0}
+            onChange={(_, newValue) => {
+                if (onChange && newValue !== null) onChange(newValue)
+            }}
+            defaultValue={defaultValue}
+            value={value}
             precision={0.5}
         />
     )
