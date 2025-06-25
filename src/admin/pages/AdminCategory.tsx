@@ -48,6 +48,7 @@ const AdminCategory = () => {
             ) : (
                 <>
                     <DataTable value={data}
+
                         rows={6}
                         className='mt-3 '
                         emptyMessage="Henüz bir şirket bulunmuyor"
