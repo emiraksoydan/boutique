@@ -2,16 +2,19 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useRef, useState } from 'react';
 import { BiCategory } from "react-icons/bi";
 import logo from "../assets/images/logo3.png";
-import { Badge } from 'primereact/badge';
-import { IoBagHandleOutline } from "react-icons/io5";
-import { MdFavoriteBorder } from "react-icons/md";
+import shoes from "../assets/images/shoes.jpg";
 import { CiSearch } from "react-icons/ci";
 import { Divider, FormControl, InputAdornment, MenuItem, Select, TextField } from '@mui/material';
 import { FaAngleRight } from "react-icons/fa6";
 import { FaCaretDown } from "react-icons/fa";
 import { Link } from 'react-router';
+import BadgeComponent from './BadgeComponent';
+import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import ShoppingCard from './ShoppingCard';
 
 type Category = { name: string };
+
 
 const HeaderBar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +27,21 @@ const HeaderBar = () => {
     ];
     const [selectedCategory, setSelectedCategory] = useState<Category | null>(categories[0]);
     const [searchTerm, setSearchTerm] = useState('');
+    const [isOpenShoppingCart, setIsOpenShoppingCart] = useState(false);
+    const cartItems = [{
+        id: '1',
+        name: 'Ürün A',
+        image: shoes,
+        quantity: 2,
+        price: 120,
+    },
+    {
+        id: '2',
+        name: 'Ürün B',
+        image: shoes,
+        quantity: 1,
+        price: 75,
+    },]
 
     const items = [
         {
@@ -255,14 +273,29 @@ const HeaderBar = () => {
                 </div>
             </div>
             <div className="col-md-3 d-flex justify-content-center  gap-4  ">
-                <span className="p-overlay-badge mt-2" style={{ fontSize: '2.0rem' }}>
-                    <IoBagHandleOutline className='mb-3' />
-                    <Badge value="0" size={"normal"} style={{ backgroundColor: "#468078" }} />
-                </span>
-                <span className="p-overlay-badge mt-2 me-6 mb-3" style={{ fontSize: '2.0rem' }}>
-                    <MdFavoriteBorder className='mb-3' />
-                    <Badge value="0" size={"normal"} style={{ backgroundColor: "#468078" }} />
-                </span>
+                <div className="dropdown position-relative d-inline-block"
+                    onMouseEnter={() => setIsOpenShoppingCart(true)}
+                    onMouseLeave={() => setIsOpenShoppingCart(false)}>
+                    <BadgeComponent badgeContent={4} iconType={ShoppingBagOutlinedIcon}></BadgeComponent>
+                    <AnimatePresence>
+                        {isOpenShoppingCart && (
+                            <motion.div
+                                className="dropdown-menu show position-absolute d-block z-3 top-100"
+                                aria-labelledby="dropdownMenuLink"
+                                initial={{ opacity: 0, y: -10 }}
+                                animate={{ opacity: 1, y: -5 }}
+                                exit={{ opacity: 0, y: -10 }}
+                                transition={{ duration: 0.2 }}
+                                style={{ left: -150, width: 'auto', minWidth: '200px', whiteSpace: 'nowrap' }}
+                            >
+                                <ShoppingCard cartList={cartItems}></ShoppingCard>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+                <div className=" mt-0 me-6 mb-3">
+                    <BadgeComponent badgeContent={4} iconType={FavoriteBorderOutlinedIcon}></BadgeComponent>
+                </div>
             </div>
         </div >
     )

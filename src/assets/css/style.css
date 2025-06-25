@@ -387,3 +387,13 @@ a.dropdown-item:active {
     background-color: #407e78 !important;
     transition: 'background-color 0.3s ease',
 }
+
+html,
+body,
+#root {
+    height: 100% !important;
+    width: 100% !important;
+    margin: 0;
+    padding: 0;
+
+}

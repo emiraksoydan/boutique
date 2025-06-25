@@ -1,0 +1,169 @@
+.admin-layout {
+    background-color: #f5f6fe !important;
+}
+
+.admin-header-blur {
+    background-color: rgba(245, 246, 254, 0.3) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+    top: 25px !important;
+}
+
+.admin-bottom-blur {
+    background-color: rgba(245, 246, 254, 0.5) !important;
+    backdrop-filter: blur(8px) !important;
+    -webkit-backdrop-filter: blur(8px) !important;
+}
+
+.p-paginator {
+    justify-content: flex-end;
+    background: #ffffff;
+    color: #6b7280;
+    border: none;
+    border-width: 0;
+    padding: 1.0rem 0rem;
+    margin-top: 1.0rem;
+    margin-right: 1.0rem;
+}
+
+.p-paginator .p-paginator-first,
+.p-paginator .p-paginator-prev,
+.p-paginator .p-paginator-next,
+.p-paginator .p-paginator-last {
+    background-color: #ffffff;
+    border: none !important;
+    color: black;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    margin: 0 !important;
+    transition: box-shadow 0.2s;
+    border-radius: 25px;
+
+}
+
+.p-paginator .p-paginator-next {
+    border-left: none;
+    border-right: none;
+
+}
+
+.p-paginator .p-paginator-prev {
+    border-left: none;
+    border-right: none;
+
+}
+
+.p-paginator .p-paginator-first:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-prev:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-next:not(.p-disabled):not(.p-highlight):hover,
+.p-paginator .p-paginator-last:not(.p-disabled):not(.p-highlight):hover {
+    color: white;
+    background-color: #6bbeb7;
+    border-color: #6bbeb7;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+
+}
+
+.p-paginator .p-paginator-first.p-disabled {
+    color: rgba(74, 90, 107, 0.75);
+    background-color: white;
+
+}
+
+.p-paginator .p-paginator-prev.p-disabled {
+    color: rgba(74, 90, 107, 0.75);
+    background-color: white;
+
+}
+
+.p-paginator .p-paginator-next.p-disabled {
+    color: rgba(74, 90, 107, 0.75);
+    background-color: white;
+
+}
+
+.p-paginator .p-paginator-last.p-disabled {
+    color: rgba(74, 90, 107, 0.75);
+    background-color: white;
+}
+
+.p-paginator .p-paginator-page-input .p-inputtext {
+    max-width: 2rem;
+}
+
+.p-paginator .p-paginator-current {
+    background-color: transparent;
+    border: 0 none;
+    color: #6b7280;
+    min-width: 2rem;
+    height: 2rem;
+    margin: 0;
+    padding: 0rem;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page {
+    background-color: white !important;
+    border: none !important;
+    color: black;
+    min-width: 2.5rem !important;
+    height: 2.5rem !important;
+    transition: box-shadow 0.2s;
+    border-radius: 25px;
+
+    margin: 2px;
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+    background-color: #6bbeb7 !important;
+    border-color: #6bbeb7 !important;
+    color: #fff;
+    border-radius: 25px;
+
+}
+
+.p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+    background: #6bbeb7 !important;
+    color: #fff;
+    border: none !important;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+}
+
+.p-datatable-striped .p-datatable-tbody>tr:nth-child(even) {
+    background-color: #ffffff;
+}
+
+.p-datatable-striped .p-datatable-tbody>tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.p-datatable .p-datatable-thead>tr>th {
+    text-align: left;
+    padding: 0.8rem 1.1rem;
+    border: 1px solid #e5e7eb;
+    border-width: 0px 0px 1px 0px !important;
+    font-weight: 700;
+    background: #ffffff;
+    transition: box-shadow 0.2s;
+    font-size: 1.0rem;
+    color: #ddf0eb;
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+    border: 1px solid #e5e7eb;
+    border-width: 1px 0px 1px 0px;
+    padding: 1.2rem 1.1rem;
+}
+
+.p-datatable .p-datatable-tbody>tr {
+    color: #635f87 !important;
+}
+
+.p-datatable-tbody>tr:hover {
+    background-color: #6bbeb7 !important;
+    color: white !important;
+    transition: box-shadow 0.2s;
+    transition: all 0.3s ease;
+
+}
