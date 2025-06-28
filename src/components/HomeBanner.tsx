@@ -10,7 +10,7 @@ const HomeBanner = () => {
     const items = [
         {
             itemImageSrc: carousel1,
-            title: 'Trade In Offer',
+            title: 'Trade In',
             title2: 'Supper value deals ',
             title3: 'On All Products',
             description: 'Save more with coupons & up to 70% off!',
@@ -39,9 +39,9 @@ const HomeBanner = () => {
                 exit={{ opacity: 0, x: -100 }}
                 transition={{ duration: 0.5 }}
             >
-                <div className="container min-vh-50 d-flex align-items-center">
-                    <div className='row align-items-center'>
-                        <div className='col-md-6 col-12  text-center text-md-start'>
+                <div className="container min-vh-50  align-items-center">
+                    <div className='row align-items-center  flex-column flex-md-row'>
+                        <div className='col-md-6 col-12  text-center text-md-start  text-content'>
                             <h4 className="mb-2">{item.title}</h4>
                             <h2 className="display-4 mb-md-0 mb-2 ">{item.title2}</h2>
                             <h1 style={{ color: "#407e78" }} className="display-2">{item.title3}</h1>

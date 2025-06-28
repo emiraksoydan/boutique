@@ -10,6 +10,10 @@ import ShoppingCard from './pages/ShoppingCard'
 import AdminLayout from './admin/AdminLayout'
 import AdminDashboard from './admin/pages/AdminDashboard'
 import AdminCategory from './admin/pages/AdminCategory'
+import AdminProduct from './admin/pages/AdminProduct'
+import AdminAddProduct from './admin/pages/AdminAddProduct'
+import AdminUpdateProduct from './admin/pages/AdminUpdateProduct'
+import AdminSlider from './admin/pages/AdminSlider'
 
 
 
@@ -28,6 +32,10 @@ function App() {
             <Route path="/admin" element={<AdminLayout />}>
                 <Route index element={<AdminDashboard />} />
                 <Route path="admin-category" element={<AdminCategory />} />
+                <Route path="admin-product" element={<AdminProduct />} />
+                <Route path="admin-product/add-product" element={<AdminAddProduct />} />
+                <Route path="admin-product/update-product/:productID" element={<AdminUpdateProduct />} />
+                <Route path="admin-slider" element={<AdminSlider />} />
             </Route>
         </Routes>
     )

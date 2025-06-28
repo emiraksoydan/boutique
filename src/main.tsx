@@ -12,6 +12,7 @@ import { Provider } from 'react-redux';
 import { store } from './redux/store.tsx';
 import { BrowserRouter } from 'react-router';
 import { DataProvider } from './contexts/DataContext.tsx';
+import { YupProvider } from './contexts/YupContext.tsx';
 
 
 createRoot(document.getElementById('root')!).render(
@@ -19,9 +20,11 @@ createRoot(document.getElementById('root')!).render(
     <BrowserRouter>
       <PrimeReactProvider value={{ unstyled: false }}>
         <Provider store={store}>
-          <DataProvider>
-            <App />
-          </DataProvider>
+          <YupProvider>
+            <DataProvider>
+              <App />
+            </DataProvider>
+          </YupProvider>
         </Provider>
       </PrimeReactProvider>
     </BrowserRouter>

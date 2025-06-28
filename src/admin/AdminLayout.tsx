@@ -4,6 +4,7 @@ import AdminHeaderBar from './components/AdminHeaderBar'
 import { Outlet } from 'react-router'
 import AdminFooterBar from './components/AdminFooterBar'
 import { useData } from '../contexts/DataContext';
+import Category from '../modals/CategoryModal/AddCategory'
 
 
 const AdminLayout = () => {
@@ -21,7 +22,7 @@ const AdminLayout = () => {
                 <div className='position-sticky z-3 rounded-5 ms-1 me-3 admin-header-blur'>
                     <AdminHeaderBar />
                 </div>
-                <div className="bg-transparent ms-1 me-3" >
+                <div className="bg-transparent  h-100 ms-1 me-3" >
                     <Outlet />
                 </div>
                 <div className='mt-auto ms-1 me-3 rounded-5'>

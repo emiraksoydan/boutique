@@ -388,6 +388,12 @@ a.dropdown-item:active {
     transition: 'background-color 0.3s ease',
 }
 
+.text-content {
+    max-height: 100vh;
+    overflow-y: auto;
+}
+
+
 html,
 body,
 #root {
