@@ -13,6 +13,7 @@ import UpdateCategory from '../../modals/CategoryModal/UpdateCategory';
 import type { Category } from '../../types/CategoryDto';
 import type { AddCategoryDto } from '../../types/AddCategoryDto';
 import { useData } from '../../contexts/DataContext';
+import type { FormikHelpers } from 'formik';
 
 
 const AdminCategory = () => {
@@ -36,8 +37,8 @@ const AdminCategory = () => {
         if (data && categories?.length === 0) { if (setCategories) { setCategories(data); } }
     }, [data]);
 
-    const handleAddSubmit = async (values: AddCategoryDto) => {
-        try { await createCategory(values).unwrap(); if (setCategories) { setCategories([]); } } catch (error) { console.log("Kategori eklenirken hata oluştu:", error); }
+    const handleAddSubmit = async (values: AddCategoryDto, formikHelpers: FormikHelpers<AddCategoryDto>) => {
+        try { await createCategory(values).unwrap(); if (setCategories) { setCategories([]); }; formikHelpers.resetForm(); } catch (error) { console.log("Kategori eklenirken hata oluştu:", error); }
     }
     const handleUpdateSubmit = async (values: Category) => {
         try {
@@ -106,8 +107,8 @@ const AdminCategory = () => {
                         </DataTable></>
                 )}
             </div>
-            <AddCategory handleSubmit={handleAddSubmit}></AddCategory>
-            <UpdateCategory getCategory={getCategory} handleSubmit={handleUpdateSubmit}></UpdateCategory>
+            <AddCategory categories={categories ?? []} handleSubmit={handleAddSubmit}></AddCategory>
+            <UpdateCategory categories={categories ?? []} getCategory={getCategory} handleSubmit={handleUpdateSubmit}></UpdateCategory>
             <DeleteModal name={getCategory?.categoryName} handleSubmit={handleDeleteCompletedClick} ></DeleteModal>
         </>
     )

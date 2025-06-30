@@ -25,7 +25,6 @@ const Product = () => {
 
     const paginatedItems = dummyItems.slice((page - 1) * pageSize, ((page - 1) * pageSize) + pageSize);
     const [value1, setValue1] = React.useState<number[]>([0, 100]);
-
     const handleChange1 = (event: Event, newValue: number[], activeThumb: number) => {
         if (activeThumb === 0) {
             setValue1([Math.min(newValue[0], value1[1] - 10), value1[1]]);
@@ -33,7 +32,6 @@ const Product = () => {
             setValue1([value1[0], Math.max(newValue[1], value1[0] + 10)]);
         }
     };
-
     const [isOpenShow, setIsOpenShow] = useState(false);
     const [isOpenSort, setIsOpenSort] = useState(false);
     const [selectedShow, setSelectedShow] = useState("Hepsi");

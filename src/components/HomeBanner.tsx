@@ -4,36 +4,19 @@ import { motion, AnimatePresence } from 'framer-motion';
 import carousel1 from "../assets/images/carousel-1.png";
 import carousel2 from "../assets/images/carousel-2.png";
 import carousel3 from "../assets/images/carousel-3.png";
+import { useGetAllFeatureSliderQuery } from '../redux/generalApi/api';
+import { useLocation } from 'react-router';
+import { Skeleton } from '@mui/material';
 
 const HomeBanner = () => {
     const [activeIndex, setActiveIndex] = useState(0);
-    const items = [
-        {
-            itemImageSrc: carousel1,
-            title: 'Trade In',
-            title2: 'Supper value deals ',
-            title3: 'On All Products',
-            description: 'Save more with coupons & up to 70% off!',
-        },
-        {
-            itemImageSrc: carousel2,
-            title: 'Trade In Offer',
-            title2: 'Supper value deals ',
-            title3: 'On All Products',
-            description: 'Save more with coupons & up to 70% off!',
-        },
-        {
-            itemImageSrc: carousel3,
-            title: 'Trade In Offer',
-            title2: 'Supper value deals',
-            title3: 'On All Products',
-            description: 'Save more with coupons & up to 70% off!',
-        }
-    ];
+    const location = useLocation();
+    const isOnPage = location.pathname === '/';
+    const { data, isLoading, error } = useGetAllFeatureSliderQuery(undefined, { skip: !isOnPage, });
     const itemTemplate = (item: any) => (
         <AnimatePresence mode="wait">
             <motion.div
-                key={item.itemImageSrc}
+                key={item.imageUrl}
                 initial={{ opacity: 0, x: 100 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -100 }}
@@ -49,7 +32,7 @@ const HomeBanner = () => {
                         </div>
                         <div className='col-12 col-md-6 '>
                             <img
-                                src={item.itemImageSrc}
+                                src={item.imageUrl}
                                 alt={item.title}
                                 className="img-fluid"
                                 style={{ objectFit: 'contain' }}
@@ -63,21 +46,28 @@ const HomeBanner = () => {
     );
 
     return (
-        <Galleria
-            className="mt-5 w-100 m-0 p-0"
-            value={items}
-            activeIndex={activeIndex}
-            onItemChange={(e) => setActiveIndex(e.index)}
-            item={itemTemplate}
-            showThumbnails={false}
-            showIndicators
-            showItemNavigators
-            showItemNavigatorsOnHover
-            changeItemOnIndicatorHover
-            circular
-            autoPlay
-            transitionInterval={5000}
-        />
+        <>
+            {isLoading ? (
+                <div className="mt-1 px-5  m-0 p-0">
+                    <Skeleton className='rounded-5 w-100 ' style={{ height: 400 }} />
+                </div>
+            ) : (
+                <Galleria
+                    className="mt-5 w-100 m-0 p-0"
+                    value={data}
+                    activeIndex={activeIndex}
+                    onItemChange={(e) => setActiveIndex(e.index)}
+                    item={itemTemplate}
+                    showThumbnails={false}
+                    showIndicators
+                    showItemNavigators
+                    showItemNavigatorsOnHover
+                    circular
+                    autoPlay
+                    transitionInterval={5000}
+                />
+            )}
+        </>
     )
 }
 

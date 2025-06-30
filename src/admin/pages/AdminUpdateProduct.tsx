@@ -8,6 +8,7 @@ import { useData } from '../../contexts/DataContext';
 import BalanceMask from '../../components/BalanceMask';
 import { ParseBalance } from '../../utils/ParseBalance';
 import { useYup } from '../../contexts/YupContext';
+import { getCategoryDisplayName } from '../../utils/CategoryHelper';
 
 
 const AdminUpdateProduct = () => {
@@ -24,6 +25,7 @@ const AdminUpdateProduct = () => {
     const { data } = useGetAllCategoriesQuery(undefined, { skip: (categories?.length ?? 0) > 0, });
     const [updateProduct] = useUpdateProductMutation();
 
+    const leafCategories = categories?.filter(cat => !categories.some(c => c.parentID === cat.categoryID));
     useEffect(() => { if (categories?.length === 0 && data?.length) { setCategories?.(data); console.log(product); } }, [categories, data])
     const handleSubmit = async (values: UpdateProductDto) => {
         const preparedValues = {
@@ -64,16 +66,28 @@ const AdminUpdateProduct = () => {
                                         as={Autocomplete}
                                         id="product_categoryID"
                                         name="categoryID"
-                                        options={categories}
-                                        getOptionLabel={(option: any) => option.categoryName}
-                                        value={categories?.find((s) => s.categoryID === values.categoryID) || null}
-                                        onChange={(e: any, newValue: any) => { setFieldValue('categoryID', newValue ? newValue.categoryID : null); }}
-                                        onBlur={() => { setFieldTouched('categoryID', true); }}
-                                        variant='outlined'
-                                        size='small'
-                                        fullWidth
-                                        label="Kategori Seçin"
-                                        renderInput={(params: any) => <TextField {...params} error={touched.categoryID && !!errors.categoryID} helperText={touched.categoryID && errors.categoryID} />}
+                                        options={leafCategories}
+                                        getOptionLabel={(option: any) => {
+                                            if (!option) return '';
+                                            if (typeof option === 'string') return option;
+                                            return getCategoryDisplayName(option, categories ?? []);
+                                        }}
+                                        value={
+                                            values.categoryID
+                                                ? categories?.find(c => c.categoryID === values.categoryID) || null
+                                                : null
+                                        }
+                                        onChange={(_e: any, newValue: any) => { setFieldValue('categoryID', newValue ? newValue.categoryID : null); }}
+                                        onBlur={() => setFieldTouched('categoryID', true)}
+                                        renderInput={(params: any) => (
+                                            <TextField
+                                                {...params}
+                                                variant="outlined"
+                                                size="small"
+                                                error={touched.categoryID && !!errors.categoryID}
+                                                helperText={touched.categoryID && errors.categoryID}
+                                            />
+                                        )}
                                         sx={{ '& .MuiOutlinedInput-root': { borderRadius: 3 } }}
                                     />
                                 </div>

@@ -5,7 +5,7 @@ import features3 from "../assets/images/feature-3.png";
 
 const ServiceCategories = () => {
     return (
-        <div className='container'>
+        <div className='container mt-3'>
             <div className='row justify-content-center m-0 p-0'>
                 <div className="col-md-4 col-sm-12 " >
                     <div className=' d-flex align-items-center border text-black p-3 rounded'>

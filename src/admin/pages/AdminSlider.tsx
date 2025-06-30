@@ -12,12 +12,13 @@ import { MdDeleteOutline, MdOutlineUpdate } from 'react-icons/md';
 import { useAddFeatureSliderMutation, useDeleteFeatureSliderMutation, useGetAllFeatureSliderQuery, useLazyGetFeatureSliderByIdQuery, useUpdateFeatureSliderMutation } from '../../redux/generalApi/api';
 import type { FeatureSliderDto } from '../../types/FeatureSliderDto';
 import type { AddFeatureSliderDto } from '../../types/AddFeatureSliderDto';
+import type { FormikHelpers } from 'formik';
 
 
 const AdminSlider = () => {
     const location = useLocation();
     const isOnPage = location.pathname === '/admin/admin-slider/';
-    const columns = [{ value: 'featureSliderID', name: 'Slider ID' }, { value: 'title', name: 'Başlık' }, { value: 'title2', name: 'Alt Başlık 2' }, { value: 'title3', name: 'Alt Başlık 3' }, { value: 'description', name: 'Açıklama' }, { value: 'imageUrl', name: 'Alt Başlık 1' }, { value: '', name: 'İşlemler' }];
+    const columns = [{ value: 'featureSliderID', name: 'Slider ID' }, { value: 'title', name: 'Başlık' }, { value: 'title2', name: 'Alt Başlık 2' }, { value: 'title3', name: 'Alt Başlık 3' }, { value: 'description', name: 'Açıklama' }, { value: 'imageUrl', name: 'Resim URL' }, { value: '', name: 'İşlemler' }];
     const { data, isLoading, error } = useGetAllFeatureSliderQuery(undefined, { skip: !isOnPage });
     const [getSlider, setGetSlider] = useState<FeatureSliderDto | undefined>(undefined);
     const [triggerGetSliderById, { data: getData, isLoading: getIsLoading, error: getIsError }] = useLazyGetFeatureSliderByIdQuery();
@@ -29,15 +30,18 @@ const AdminSlider = () => {
     }, [getData]);
 
 
-    const handleAddSubmit = async (values: AddFeatureSliderDto) => {
-        try { await createSlider(values).unwrap(); } catch (error) { console.log("Slider eklenirken hata oluştu:", error); }
+    const handleAddSubmit = async (values: AddFeatureSliderDto, formikHelpers: FormikHelpers<AddFeatureSliderDto>) => {
+        try {
+            await createSlider(values).unwrap(); setGetSlider(undefined); formikHelpers.resetForm();
+        } catch (error) { console.log("Slider eklenirken hata oluştu:", error); }
     }
-    const handleUpdateSubmit = async (values: FeatureSliderDto) => {
+    const handleUpdateSubmit = async (values: FeatureSliderDto,) => {
         try {
             await updateSlider(values).unwrap();
+            setGetSlider(undefined);
         } catch (error) { console.log("Slider güncellenirken hata oluştu:", error); }
     }
-    const handleClick = async (id: string) => { if (getSlider?.featureSliderID !== id) triggerGetSliderById(id); }
+    const handleClick = (id: string) => { if (getSlider?.featureSliderID !== id) triggerGetSliderById(id); }
     const handleDeleteCompletedClick = async () => {
         try {
             await deleteSlider(getSlider!.featureSliderID).unwrap();
@@ -56,8 +60,8 @@ const AdminSlider = () => {
                 </Tooltip>
                 <Tooltip title="Slider güncelle" placement="top">
                     <IconButton
-                        data-bs-toggle="modal" data-bs-target='#updateCategoryModal' className='rounded-3'
-                        onClick={() => handleClick(rowData?.categoryID)}
+                        data-bs-toggle="modal" data-bs-target='#updateSliderModal' className='rounded-3'
+                        onClick={() => handleClick(rowData?.featureSliderID)}
                         style={{ backgroundColor: '#ddf0eb', }}>
                         <MdOutlineUpdate color='blue ' fontSize='x-large' />
                     </IconButton>
@@ -91,7 +95,7 @@ const AdminSlider = () => {
                             paginatorLeft
                             paginatorTemplate={'FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink'}>
                             {columns.map((column, index) => {
-                                if (index === 0) return null;
+                                if (index === 0 || index === 5) return null;
                                 return (<Column key={index} align='left' body={index === 6 ? transactionsBodyTemplate : ''} sortable field={column.value} headerStyle={{ color: '#b2b8c9', fontSize: 15 }} header={column.name} bodyClassName='fs-6 fw-semibold' />);
                             })}
                         </DataTable></>

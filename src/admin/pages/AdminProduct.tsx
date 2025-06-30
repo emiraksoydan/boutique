@@ -18,7 +18,6 @@ const AdminProduct = () => {
     const columns = [{ value: 'productID', name: 'Ürün ID' }, { value: 'productName', name: 'Ürün Adı' }, { value: 'categoryName', name: 'Kategorisi', render: (rowData: any) => rowData.category?.categoryName || '' }, { value: 'productPrice', name: 'Ürün Fiyatı' }, { value: '', name: 'İşlemler' }];
 
     const { data, isLoading, error } = useGetAllProductsWithCategoryQuery(undefined, { skip: !isOnPage, });
-    console.log("data", data);
 
     const [triggerGetProductById, { data: getData, isLoading: getIsLoading, error: getIsError }] = useLazyGetProductByIdQuery();
     const [deleteProduct] = useDeleteProductMutation();

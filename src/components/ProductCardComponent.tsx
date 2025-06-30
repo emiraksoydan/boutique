@@ -93,8 +93,6 @@ const ProductCardComponent: React.FC<ProductCardProps> = ({ id, title, productNa
                         </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
 

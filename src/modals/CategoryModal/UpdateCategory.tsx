@@ -4,10 +4,12 @@ import * as Yup from 'yup';
 
 import React from 'react'
 import type { Category } from '../../types/CategoryDto';
+import { getCategoryDisplayName } from '../../utils/CategoryHelper';
 
 
 
-const UpdateCategory = ({ getCategory, handleSubmit = () => { } }: {
+const UpdateCategory = ({ categories, getCategory, handleSubmit = () => { } }: {
+    categories: Category[],
     getCategory?: Category,
     handleSubmit?: (
         values: Category,
@@ -16,6 +18,7 @@ const UpdateCategory = ({ getCategory, handleSubmit = () => { } }: {
 }) => {
     const categoryYup = Yup.object({
         categoryName: Yup.string().required('Kategori adı zorunludur').min(3, 'Kategori adı en az 3 karakter olabilir').max(50, 'Kategori adı en fazla 50 karakter olabilir'),
+
     });
     return (
         <div className="modal fade"
@@ -33,12 +36,31 @@ const UpdateCategory = ({ getCategory, handleSubmit = () => { } }: {
                         <div className="modal-body">
                             <Formik
                                 enableReinitialize={true}
-                                initialValues={getCategory ?? { categoryID: '', categoryName: '' }}
+                                initialValues={getCategory ?? { categoryID: '', categoryName: '', parentID: '' }}
                                 validationSchema={categoryYup}
                                 onSubmit={(values, formikHelpers) => handleSubmit(values, formikHelpers)}
                             >
-                                {({ touched, errors }) => (
+                                {({ touched, errors, values }) => (
                                     <Form>
+                                        <TextField
+                                            label="Üst Kategori"
+                                            value={
+                                                getCategoryDisplayName(
+                                                    categories.find(cat => cat.categoryID === values.categoryID)
+                                                    || { categoryName: '', categoryID: '', parentID: null },
+                                                    categories
+                                                )
+                                            }
+                                            fullWidth
+                                            variant="outlined"
+                                            size="small"
+                                            margin="normal"
+                                            slotProps={{
+                                                input: {
+                                                    readOnly: true,
+                                                }
+                                            }}
+                                        />
                                         <Field
                                             as={TextField}
                                             id='category_name'

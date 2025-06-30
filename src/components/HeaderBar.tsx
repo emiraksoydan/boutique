@@ -208,7 +208,7 @@ const HeaderBar = () => {
                                     border: 'none',
                                 },
                                 '& .MuiSelect-select': {
-                                    paddingLeft: 0, // Label/placeholder için soldan boşluğu kaldırır
+                                    paddingLeft: 0,
                                 }
                             }}
                         >
@@ -265,7 +265,7 @@ const HeaderBar = () => {
                     <Link to={"/"} className="col-auto text-muted fw-bold text-decoration-none">Anasayfa</Link>
                     <Link to={"/product"} className="col-auto text-muted fw-bold text-decoration-none ">Ürünler</Link>
                     <Link to={"/product-detail"} className="col-auto text-muted fw-bold text-decoration-none">Ürün Detayları</Link>
-                    <Link to={"/deal-of-day"} className="col-auto text-muted fw-bold text-decoration-none">Günün Fırsatı</Link>
+                    <Link to={"/deal-of-day"} className="col-auto text-muted fw-bold text-decoration-none">İndirimler</Link>
                     <div className="col-auto d-flex align-items-center text-muted fw-bold">
                         Sayfalar <FaCaretDown className="ms-1" />
                     </div>
